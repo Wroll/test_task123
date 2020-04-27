@@ -1,0 +1,15 @@
+web:
+ build: .
+ command: python3 my_app/etl_script.py
+ command: python3 main.py 
+ ports:
+   - "5000:5000"
+ volumes:
+   - .:/app
+ links:
+   - mongodb
+
+mongodb:
+ image: mongo:3.2
+
+
