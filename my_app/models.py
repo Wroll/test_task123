@@ -1,6 +1,6 @@
 import mongoengine as me
 
-me.connect("Test_blog")
+me.connect("Users", host="mongodb")
 
 
 class User(me.Document):
