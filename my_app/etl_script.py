@@ -8,7 +8,7 @@ fake = Faker()
 class DataGenerator:
     REF_ID = "ebw7f8ay"
     API_TOKEN = "KWZJ-V50N-5GKS-F46U"
-    AMOUNT_OF_USERS = 5  # 100
+    AMOUNT_OF_USERS = 100
     URL = f"https://randomapi.com/api/{REF_ID}?key={API_TOKEN}&results={AMOUNT_OF_USERS}"
 
     @classmethod
