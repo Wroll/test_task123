@@ -25,4 +25,4 @@ class DataGenerator:
                 User(name=fake.name_male(), **user).save()
             time.sleep(0.5)
 
-# DataGenerator.upload_to_db()
+DataGenerator.upload_to_db()
