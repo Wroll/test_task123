@@ -1,7 +1,7 @@
 import requests
 from my_app.models import User
 from faker import Faker
-
+import time
 
 fake = Faker()
 
@@ -23,5 +23,6 @@ class DataGenerator:
             test_data = cls._take_data_from_external_api()
             for user in test_data:
                 User(name=fake.name_male(), **user).save()
+            time.sleep(0.5)
 
 # DataGenerator.upload_to_db()
