@@ -2,13 +2,14 @@ import requests
 from my_app.models import User
 from faker import Faker
 
+
 fake = Faker()
 
 
 class DataGenerator:
     REF_ID = "ebw7f8ay"
     API_TOKEN = "KWZJ-V50N-5GKS-F46U"
-    AMOUNT_OF_USERS = 100
+    AMOUNT_OF_USERS = 10
     URL = f"https://randomapi.com/api/{REF_ID}?key={API_TOKEN}&results={AMOUNT_OF_USERS}"
 
     @classmethod
@@ -18,6 +19,9 @@ class DataGenerator:
 
     @classmethod
     def upload_to_db(cls):
-        test_data = cls._take_data_from_external_api()
-        for user in test_data:
-            User(name=fake.name_male(), **user).save()
+        for _ in range(10):
+            test_data = cls._take_data_from_external_api()
+            for user in test_data:
+                User(name=fake.name_male(), **user).save()
+
+# DataGenerator.upload_to_db()
