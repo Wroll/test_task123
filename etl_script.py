@@ -1,8 +1,7 @@
 import requests
 from my_app.models import User
-from faker import Faker
 import time
-
+from faker import Faker
 fake = Faker()
 
 
@@ -19,10 +18,11 @@ class DataGenerator:
 
     @classmethod
     def upload_to_db(cls):
+        # external api can generate max 10 users. To generate 100 users, i had to make a loop
         for _ in range(10):
             test_data = cls._take_data_from_external_api()
             for user in test_data:
                 User(name=fake.name_male(), **user).save()
-            time.sleep(0.5)
+                time.sleep(0.5)
 
 DataGenerator.upload_to_db()

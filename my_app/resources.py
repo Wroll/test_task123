@@ -14,31 +14,30 @@ class UserResource(Resource):
     def get(self, id=None):
         if id:
             try:
-                post = User.objects(id=id).first()
+                user = User.objects(id=id).first()
             except MongoValidationError as error:
                 abort(400, f"{error}")
-            return UserSchema().dump(post)
+            return UserSchema().dump(user)
         else:
-            posts = User.objects()
-            return UserSchema().dump(posts, many=True)
+            users = User.objects()
+            return UserSchema().dump(users, many=True)
 
     def post(self):
         try:
             data = UserSchema().load(request.get_json())
         except MarshmallowValidationError as error:
             return str(error)
-        post_ = User.objects.create(**data)
-        return UserSchema().dump(post_)
+        user = User.objects.create(**data)
+        return UserSchema().dump(user)
 
     def put(self, id):
         try:
             data = UserSchema().load(request.get_json())
-            # method to update fields
-            update_user(data, id)
+            update_user(data, id) # method to update fields
         except (MarshmallowValidationError, MongoValidationError) as error:
             abort(400, f"{error}")
-        new_author = User.objects(id=id)
-        return UserSchema().dump(new_author, many=True)
+        new_user = User.objects(id=id)
+        return UserSchema().dump(new_user, many=True)
 
     def delete(self, id):
         try:
